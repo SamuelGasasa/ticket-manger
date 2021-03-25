@@ -1,6 +1,7 @@
 require("dotenv").config();
 const app = require("./app");
 const mongoose = require("mongoose");
+const { response } = require("./app");
 const env = process.env.NODE_ENV || "production";
 const MONGO_URI =
   env === "test" ? process.env.TEST_MONGO_URI : process.env.MONGO_URI;
@@ -55,4 +56,16 @@ app.get("/api/tickets", (req, res) => {
 
     res.send(collection);
   });
+});
+
+app.patch("/api/tickets/:ticketId/done", (req, res) => {
+  const { ticketId } = req.params;
+  tickets.findById(ticketId).then((response) => {
+    response.done = true;
+    response.save();
+    console.log(response);
+  });
+
+  // console.log()
+  res.send({ update: true });
 });
