@@ -16,9 +16,20 @@ mongoose
   .then(() => {
     console.log(`connected to MongoDB - ${env}`);
     app.listen(PORT, () =>
-      console.log(`app listening at http://localhost:${PORT}`)
+      console.log(`app listening at http://localhost:${PORT}`),
     );
   })
   .catch((error) => {
     console.log("error connecting to MongoDB:", error.message);
   });
+
+const db = mongoose.connection;
+
+app.get("/api/tickets", (req, res) => {
+  const Schema = mongoose.Schema;
+
+  const tickets = mongoose.model("tickets", new Schema({ name: String }));
+  tickets.find({}, function (err, collection) {
+    res.send(collection);
+  });
+});
