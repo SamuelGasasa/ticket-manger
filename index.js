@@ -1,7 +1,8 @@
 require("dotenv").config();
 const app = require("./app");
 const mongoose = require("mongoose");
-const { response } = require("./app");
+const e = require("express");
+// const { response } = require("./app");
 const env = process.env.NODE_ENV || "production";
 const MONGO_URI =
   env === "test" ? process.env.TEST_MONGO_URI : process.env.MONGO_URI;
@@ -34,12 +35,30 @@ const tickets = mongoose.model(
     userEmail: String,
     done: Boolean,
     creationTime: Number,
-    lables: [String],
+    labels: [String],
   }),
 );
-const db = mongoose.connection;
 
-app.get("/api/tickets", (req, res) => {
+// const DB = mongoose.connection;
+// const ticketsd = DB.collection("tickets");
+app.get("/api/tickets", async (req, res) => {
+  // try {
+  //   const all = await ticketsd.find({}).toArray();
+  //   console.log(all);
+  //   const { searchText } = req.query;
+  //   if (searchText) {
+  //     console.log(searchText);
+  //     const searchedTickets = all.filter((ticket) => {
+  //       return ticket.title.includes(searchText);
+  //     });
+  //     res.send(searchedTickets);
+  //     return;
+  //   }
+
+  //   res.status(200).send(all);
+  // } catch (error) {
+  //   res.send({ error: e.message });
+  // }
   tickets.find({}, (err, collection) => {
     // console.log(req.query.id);
     const { searchText } = req.query;
@@ -50,16 +69,18 @@ app.get("/api/tickets", (req, res) => {
         // console.log(ticket.title.inc);
         return ticket.title.includes(searchText);
       });
-      res.send(newArr);
+      res.status(200).send(newArr);
       return;
     }
 
-    res.send(collection);
+    res.status(200).send(collection);
   });
 });
 
-app.patch("/api/tickets/:ticketId/done", (req, res) => {
+app.patch("/api/tickets/:ticketId/done", async (req, res) => {
   const { ticketId } = req.params;
+  // const first = await ticketsd.find({ _id: ticketId });
+  // console.log(first);
   tickets.findById(ticketId).then((response) => {
     response.done = true;
     response.save();
