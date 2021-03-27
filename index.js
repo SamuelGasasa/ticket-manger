@@ -69,3 +69,15 @@ app.patch("/api/tickets/:ticketId/done", (req, res) => {
   // console.log()
   res.send({ update: true });
 });
+
+app.patch("/api/tickets/:ticketId/undone", (req, res) => {
+  const { ticketId } = req.params;
+  tickets.findById(ticketId).then((response) => {
+    response.done = false;
+    response.save();
+    console.log(response);
+  });
+
+  // console.log()
+  res.send({ update: true });
+});
