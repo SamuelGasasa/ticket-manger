@@ -6,14 +6,21 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [tickets, setTickets] = useState([]);
-  const fetch = async () => {
-    const { data } = await axios.get("api/tickets");
-    setTickets(data);
-  };
+  // const fetch = async () => {
 
-  fetch();
+  // };
+
+  useEffect(() => {
+    axios.get("api/tickets").then((response) => {
+      setTickets(response.data);
+    });
+    // setTickets(data);
+  }, []);
+
+  // fetch();
   return (
     <>
+      <h1>Ticket Manager</h1>
       <Ticket data={tickets} />
     </>
   );

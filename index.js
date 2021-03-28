@@ -63,7 +63,7 @@ app.get("/api/tickets", async (req, res) => {
     // console.log(req.query.id);
     const { searchText } = req.query;
     const check = new RegExp(searchText, "g");
-    console.log(searchText);
+    // console.log(searchText);
     if (searchText) {
       const newArr = collection.filter((ticket) => {
         // console.log(ticket.title.inc);
@@ -84,7 +84,7 @@ app.patch("/api/tickets/:ticketId/done", async (req, res) => {
   tickets.findById(ticketId).then((response) => {
     response.done = true;
     response.save();
-    console.log(response);
+    // console.log(response);
   });
 
   // console.log()
@@ -96,7 +96,7 @@ app.patch("/api/tickets/:ticketId/undone", (req, res) => {
   tickets.findById(ticketId).then((response) => {
     response.done = false;
     response.save();
-    console.log(response);
+    // console.log(response);
   });
 
   // console.log()
