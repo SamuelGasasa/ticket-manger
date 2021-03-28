@@ -4,6 +4,7 @@ function SearchInput({ search }) {
   return (
     <div>
       <input
+        id="searchInput"
         onChange={(e) => {
           search(e.target.value);
         }}

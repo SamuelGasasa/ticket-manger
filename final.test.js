@@ -53,8 +53,7 @@ describe(projectName, () => {
     await app.close();
   });
   test("Can get all tickets", async () => {
-    const body = await request(app).get("/api/tickets");
-    console.log(body);
+    const { body } = await request(app).get("/api/tickets").expect(200);
     const allTickets = await tickets.find({}).toArray();
 
     expect(body.length).toBe(allTickets.length);

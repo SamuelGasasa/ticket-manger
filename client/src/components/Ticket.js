@@ -5,8 +5,8 @@ const Ticket = ({ data }) => {
     <>
       {data.map((ticket) => (
         <div className="ticket">
-          <div>{ticket.title}</div>
-          <p>{ticket.content}</p>
+          <h3>{ticket.title}</h3>
+          <p className="innerText">{ticket.content}</p>
           <p>{`${ticket.userEmail} | ${new Date(
             ticket.creationTime,
           ).toLocaleString()}`}</p>
