@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.title {
+  text-align: center;
+}
+
+.restoreHideTickets {
+  background-color: transparent;
+  color: blue;
+  border-style: none;
+}
+
+.restoreHideTickets:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

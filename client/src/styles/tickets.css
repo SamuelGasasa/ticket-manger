@@ -1,0 +1,27 @@
+.ticket {
+  border-style: solid;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.hideTicketButton {
+  background-color: transparent;
+  color: blue;
+  border-style: none;
+  padding-right: 10px;
+}
+
+.hideTicketButton:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.label {
+  margin-left: 5px;
+  /* border-style: solid; */
+  background-color: blue;
+  color: white;
+  border-radius: 20%;
+  /* border-radius: 1px; */
+}

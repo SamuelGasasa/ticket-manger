@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import "../styles/tickets.css";
 
 const Ticket = ({ data, show, counter, setCounter }) => {
   const [hide, setHide] = useState(false);
@@ -26,7 +27,7 @@ const Ticket = ({ data, show, counter, setCounter }) => {
             data.creationTime,
           ).toLocaleString()}`}</p>
           {data.labels?.map((label) => {
-            return <span className="label">{label}</span>;
+            return <span className="label">{label} </span>;
           })}
         </div>
       )}

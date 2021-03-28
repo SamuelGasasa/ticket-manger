@@ -30,9 +30,10 @@ function App() {
   // fetch();
   return (
     <>
-      <h1>Ticket Manager</h1>
+      <h1 className="title">Ticket Manager</h1>
       <SearchInput search={searchTickets} />
       <button
+        className="restoreHideTickets"
         id="restoreHideTickets"
         onClick={() => {
           setCounter(0);
