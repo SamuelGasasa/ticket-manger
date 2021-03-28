@@ -8,6 +8,7 @@ import SearchInput from "./components/SearchInput";
 function App() {
   const [tickets, setTickets] = useState([]);
   const [show, setShow] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   // const fetch = async () => {
 
@@ -34,13 +35,22 @@ function App() {
       <button
         id="restoreHideTickets"
         onClick={() => {
+          setCounter(0);
           setShow(!show);
         }}
       >
         show all
       </button>
+      <span id="hideTicketsCounter">{counter}</span>
       {tickets.map((ticket) => {
-        return <Ticket data={ticket} show={show} />;
+        return (
+          <Ticket
+            data={ticket}
+            show={show}
+            counter={counter}
+            setCounter={setCounter}
+          />
+        );
       })}
     </>
   );

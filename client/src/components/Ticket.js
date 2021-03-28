@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Ticket = ({ data, show }) => {
+const Ticket = ({ data, show, counter, setCounter }) => {
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
@@ -12,18 +12,22 @@ const Ticket = ({ data, show }) => {
       {hide ? null : (
         <div className="ticket">
           <button
-            id="hideTicketButton"
+            className="hideTicketButton"
             onClick={() => {
+              setCounter(counter + 1);
               setHide(true);
             }}
           >
             hide
           </button>
           <h3>{data.title}</h3>
-          <p className="innerText">{data.content}</p>
+          <p>{data.content}</p>
           <p>{`${data.userEmail} | ${new Date(
             data.creationTime,
           ).toLocaleString()}`}</p>
+          {data.labels?.map((label) => {
+            return <span className="label">{label}</span>;
+          })}
         </div>
       )}
     </>
