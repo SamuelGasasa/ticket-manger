@@ -1,17 +1,31 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
-const Ticket = ({ data }) => {
+const Ticket = ({ data, show }) => {
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    setHide(false);
+  }, [show]);
   return (
     <>
-      {data.map((ticket) => (
+      {hide ? null : (
         <div className="ticket">
-          <h3>{ticket.title}</h3>
-          <p className="innerText">{ticket.content}</p>
-          <p>{`${ticket.userEmail} | ${new Date(
-            ticket.creationTime,
+          <button
+            id="hideTicketButton"
+            onClick={() => {
+              setHide(true);
+            }}
+          >
+            hide
+          </button>
+          <h3>{data.title}</h3>
+          <p className="innerText">{data.content}</p>
+          <p>{`${data.userEmail} | ${new Date(
+            data.creationTime,
           ).toLocaleString()}`}</p>
         </div>
-      ))}
+      )}
     </>
   );
 };

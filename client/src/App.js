@@ -7,6 +7,8 @@ import SearchInput from "./components/SearchInput";
 
 function App() {
   const [tickets, setTickets] = useState([]);
+  const [show, setShow] = useState(false);
+
   // const fetch = async () => {
 
   // };
@@ -29,7 +31,17 @@ function App() {
     <>
       <h1>Ticket Manager</h1>
       <SearchInput search={searchTickets} />
-      <Ticket data={tickets} />
+      <button
+        id="restoreHideTickets"
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        show all
+      </button>
+      {tickets.map((ticket) => {
+        return <Ticket data={ticket} show={show} />;
+      })}
     </>
   );
 }
