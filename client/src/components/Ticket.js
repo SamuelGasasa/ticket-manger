@@ -27,7 +27,7 @@ const Ticket = ({ data, show, counter, setCounter }) => {
             data.creationTime,
           ).toLocaleString()}`}</p>
           {data.labels?.map((label) => {
-            return <span className="label">{label} </span>;
+            return <span className="label">{label}</span>;
           })}
         </div>
       )}

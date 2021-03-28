@@ -3,6 +3,7 @@
   padding: 10px;
   margin: 10px;
   border-radius: 20px;
+  background-color: whitesmoke;
 }
 
 .hideTicketButton {
@@ -18,10 +19,11 @@
 }
 
 .label {
+  padding: 1px;
   margin-left: 5px;
   /* border-style: solid; */
-  background-color: blue;
+  background-color: grey;
   color: white;
-  border-radius: 20%;
+  border-radius: 10%;
   /* border-radius: 1px; */
 }

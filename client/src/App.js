@@ -32,17 +32,19 @@ function App() {
     <>
       <h1 className="title">Ticket Manager</h1>
       <SearchInput search={searchTickets} />
-      <button
-        className="restoreHideTickets"
-        id="restoreHideTickets"
-        onClick={() => {
-          setCounter(0);
-          setShow(!show);
-        }}
-      >
-        show all
-      </button>
-      <span id="hideTicketsCounter">{counter}</span>
+      <div className="header">
+        <button
+          className="restoreHideTickets"
+          id="restoreHideTickets"
+          onClick={() => {
+            setCounter(0);
+            setShow(!show);
+          }}
+        >
+          show all
+        </button>
+        <span id="hideTicketsCounter">{counter}</span>
+      </div>
       {tickets.map((ticket) => {
         return (
           <Ticket
