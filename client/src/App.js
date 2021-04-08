@@ -1,24 +1,61 @@
 import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios";
+import Ticket from "./components/Ticket";
+import { useState, useEffect } from "react";
+import SearchInput from "./components/SearchInput";
 
 function App() {
+  const [tickets, setTickets] = useState([]);
+  const [show, setShow] = useState(false);
+  const [counter, setCounter] = useState(0);
+
+  // const fetch = async () => {
+
+  // };
+
+  useEffect(() => {
+    axios.get("/api/tickets").then((response) => {
+      setTickets(response.data);
+    });
+    // setTickets(data);
+  }, []);
+
+  const searchTickets = (searchInput) => {
+    axios.get(`/api/tickets?searchText=${searchInput}`).then((response) => {
+      setTickets(response.data);
+    });
+  };
+
+  // fetch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <h1 className="title">Ticket Manager</h1>
+      <SearchInput search={searchTickets} />
+      <div className="header">
+        <button
+          className="restoreHideTickets"
+          id="restoreHideTickets"
+          onClick={() => {
+            setCounter(0);
+            setShow(!show);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          show all
+        </button>
+        <span id="hideTicketsCounter">{counter}</span>
+      </div>
+      {tickets.map((ticket) => {
+        return (
+          <Ticket
+            data={ticket}
+            show={show}
+            counter={counter}
+            setCounter={setCounter}
+          />
+        );
+      })}
+    </>
   );
 }
 
